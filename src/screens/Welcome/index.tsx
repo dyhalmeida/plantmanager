@@ -7,12 +7,12 @@ import {
   StyleSheet,
 } from 'react-native';
 import wateringImage from '../../assets/watering.png';
+import colors from '../../styles/colors';
 
 const Welcome = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Gerencia suas plantas de forma fácil</Text>
-      <Image source={wateringImage} />
+      <Text style={styles.title}>Gerencia suas plantas de forma fácil</Text>
       <Text>
         Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
         sempre que precisar.
@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: colors.heading,
+    marginTop: 38,
   },
 });
 
