@@ -7,6 +7,10 @@ const Welcome = () => {
     <View style={styles.container}>
       <Text>Gerencia suas plantas de forma fácil</Text>
       <Image source={wateringImage} />
+      <Text>
+        Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
+        sempre que precisar.
+      </Text>
     </View>
   );
 };
