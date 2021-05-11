@@ -12,7 +12,9 @@ import colors from '../../styles/colors';
 const Welcome = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Gerencia suas plantas de forma fácil</Text>
+      <Text style={styles.title}>
+        Gerencie {'\n'} suas plantas de {'\n'} forma fácil
+      </Text>
       <Image style={styles.image} source={wateringImage} />
       <Text style={styles.description}>
         Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
