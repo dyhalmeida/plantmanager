@@ -1,20 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Welcome } from './src/screens/Welcome';
 
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Olá Diego Almeida. =D</Text>
-    </View>
-  );
+  return <Welcome />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default App;
