@@ -14,7 +14,7 @@ const Welcome = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Gerencia suas plantas de forma fácil</Text>
       <Image style={styles.image} source={wateringImage} />
-      <Text>
+      <Text style={styles.description}>
         Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
         sempre que precisar.
       </Text>
@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
   image: {
     width: 292,
     height: 284,
+  },
+  description: {
+    textAlign: 'center',
+    fontSize: 18,
+    paddingHorizontal: 20,
+    color: colors.heading,
   },
 });
 
