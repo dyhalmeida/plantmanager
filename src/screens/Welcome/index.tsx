@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import wateringImage from '../../assets/watering.png';
 
 const Welcome = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Gerencia suas plantas de forma fácil</Text>
       <Image source={wateringImage} />
       <Text>
@@ -14,7 +20,7 @@ const Welcome = () => {
       <TouchableOpacity>
         <Text>{'>'}</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
