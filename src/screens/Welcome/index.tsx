@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   SafeAreaView,
+  View,
   Text,
   Image,
   TouchableOpacity,
@@ -15,19 +16,23 @@ import fonts from '../../styles/fonts';
 const Welcome = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>
-        Gerencie {'\n'} suas plantas de {'\n'} forma fácil
-      </Text>
-      <Image style={styles.image} resizeMode="contain" source={wateringImage} />
-      <Text style={styles.description}>
-        Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
-        sempre que precisar.
-      </Text>
-      <TouchableOpacity style={styles.button}>
-        <Text>
-          <Feather style={styles.icon} name="chevron-right" />
+      <View style={styles.wrapper}>
+        <Text style={styles.title}>
+          Gerencie {'\n'} suas plantas de {'\n'} forma fácil
         </Text>
-      </TouchableOpacity>
+        <Image
+          style={styles.image}
+          resizeMode="contain"
+          source={wateringImage}
+        />
+        <Text style={styles.description}>
+          Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
+          sempre que precisar.
+        </Text>
+        <TouchableOpacity style={styles.button}>
+          <Feather style={styles.icon} name="chevron-right" />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -35,16 +40,21 @@ const Welcome = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  wrapper: {
+    flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     color: colors.heading,
     marginTop: 38,
     fontFamily: fonts.heading,
+    lineHeight: 34,
   },
   image: {
     height: Dimensions.get('window').width * 0.7,
