@@ -2,6 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   View,
+  Text,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
@@ -16,6 +17,7 @@ const UserIdentification = () => {
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
+              <Text style={styles.emoji}>😄</Text>
             </View>
           </View>
         </View>
@@ -42,6 +44,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 54,
+  },
+  emoji: {
+    fontSize: 44,
+    marginBottom: 20,
   },
 });
 
