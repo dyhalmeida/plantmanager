@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { Button } from '../../components/Button';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
@@ -24,6 +25,9 @@ const UserIdentification = () => {
               <Text style={styles.emoji}>😄</Text>
               <Text style={styles.title}>Como podemos {'\n'} chamar você?</Text>
               <TextInput style={styles.input} placeholder="Digite um nome" />
+            </View>
+            <View style={styles.footer}>
+              <Button value="Confirmar" />
             </View>
           </View>
         </View>
@@ -71,6 +75,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     padding: 10,
     textAlign: 'center',
+  },
+  footer: {
+    width: '100%',
+    marginTop: 40,
+    paddingHorizontal: 20,
   },
 });
 
