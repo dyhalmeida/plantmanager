@@ -7,6 +7,9 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
+
 const UserIdentification = () => {
   return (
     <SafeAreaView style={styles.container}>
@@ -18,6 +21,7 @@ const UserIdentification = () => {
           <View style={styles.form}>
             <View style={styles.header}>
               <Text style={styles.emoji}>😄</Text>
+              <Text style={styles.title}>Como podemos {'\n'} chamar você?</Text>
             </View>
           </View>
         </View>
@@ -48,6 +52,13 @@ const styles = StyleSheet.create({
   emoji: {
     fontSize: 44,
     marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    lineHeight: 32,
+    textAlign: 'center',
+    color: colors.heading,
+    fontFamily: fonts.heading,
   },
 });
 
