@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  TextInput,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
@@ -22,6 +23,7 @@ const UserIdentification = () => {
             <View style={styles.header}>
               <Text style={styles.emoji}>😄</Text>
               <Text style={styles.title}>Como podemos {'\n'} chamar você?</Text>
+              <TextInput style={styles.input} placeholder="Digite um nome" />
             </View>
           </View>
         </View>
@@ -59,6 +61,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.heading,
     fontFamily: fonts.heading,
+  },
+  input: {
+    width: '100%',
+    borderBottomWidth: 1,
+    borderColor: colors.gray,
+    color: colors.heading,
+    fontSize: 18,
+    marginTop: 50,
+    padding: 10,
+    textAlign: 'center',
   },
 });
 
