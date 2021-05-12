@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import wateringImage from '../../assets/watering.png';
 import colors from '../../styles/colors';
 
@@ -21,8 +22,10 @@ const Welcome = () => {
         Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
         sempre que precisar.
       </Text>
-      <TouchableOpacity>
-        <Text>{'>'}</Text>
+      <TouchableOpacity style={styles.button}>
+        <Text>
+          <Feather style={styles.icon} name="chevron-right" />
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -49,6 +52,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingHorizontal: 20,
     color: colors.heading,
+  },
+  button: {
+    backgroundColor: colors.green,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    marginBottom: 10,
+    height: 56,
+    width: 56,
+  },
+  icon: {
+    fontSize: 32,
+    color: colors.white,
   },
 });
 
