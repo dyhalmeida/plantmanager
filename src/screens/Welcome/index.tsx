@@ -10,6 +10,7 @@ import {
 import { Feather } from '@expo/vector-icons';
 import wateringImage from '../../assets/watering.png';
 import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 const Welcome = () => {
   return (
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.heading,
     marginTop: 38,
+    fontFamily: fonts.heading,
   },
   image: {
     height: Dimensions.get('window').width * 0.7,
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingHorizontal: 20,
     color: colors.heading,
+    fontFamily: fonts.text,
   },
   button: {
     backgroundColor: colors.green,
