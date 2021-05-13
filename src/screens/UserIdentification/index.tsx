@@ -13,6 +13,24 @@ import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
 const UserIdentification = () => {
+  const [focused, setFocused] = React.useState(false);
+  const [dirty, setDirty] = React.useState(false);
+  const [username, setUsername] = React.useState<string>();
+
+  function handleInputBlur() {
+    setFocused(false);
+    setDirty(!!username);
+  }
+
+  function handleInputFocus() {
+    setFocused(true);
+  }
+
+  function handleInputChange(value: string) {
+    setDirty(!!value);
+    setUsername(value);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
@@ -22,9 +40,18 @@ const UserIdentification = () => {
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
-              <Text style={styles.emoji}>😄</Text>
+              <Text style={styles.emoji}>{dirty ? '😄' : '🙂'}</Text>
               <Text style={styles.title}>Como podemos {'\n'} chamar você?</Text>
-              <TextInput style={styles.input} placeholder="Digite um nome" />
+              <TextInput
+                style={[
+                  styles.input,
+                  (focused || dirty) && { borderColor: colors.green },
+                ]}
+                placeholder="Digite um nome"
+                onBlur={handleInputBlur}
+                onFocus={handleInputFocus}
+                onChange={handleInputChange}
+              />
             </View>
             <View style={styles.footer}>
               <Button value="Confirmar" />
