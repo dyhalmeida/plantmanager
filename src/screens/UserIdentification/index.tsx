@@ -6,8 +6,12 @@ import {
   TextInput,
   StyleSheet,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
   Platform,
+  Keyboard,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+
 import { Button } from '../../components/Button';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
@@ -16,6 +20,7 @@ const UserIdentification = () => {
   const [focused, setFocused] = React.useState(false);
   const [dirty, setDirty] = React.useState(false);
   const [username, setUsername] = React.useState<string>();
+  const navigation = useNavigation();
 
   function handleInputBlur() {
     setFocused(false);
@@ -26,9 +31,13 @@ const UserIdentification = () => {
     setFocused(true);
   }
 
-  function handleInputChange(value: string) {
-    setDirty(!!value);
-    setUsername(value);
+  function handleInputChange(text: string) {
+    setDirty(!!text);
+    setUsername(text);
+  }
+
+  function handleConfirmationPage() {
+    navigation.navigate('ConfirmationUser');
   }
 
   return (
@@ -37,6 +46,7 @@ const UserIdentification = () => {
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
@@ -45,19 +55,22 @@ const UserIdentification = () => {
               <TextInput
                 style={[
                   styles.input,
-                  (focused || dirty) && { borderColor: colors.green },
+                    focused || dirty
+                      ? { borderColor: colors.green }
+                      : { borderColor: colors.gray },
                 ]}
                 placeholder="Digite um nome"
                 onBlur={handleInputBlur}
                 onFocus={handleInputFocus}
-                onChange={handleInputChange}
+                  onChangeText={(text) => handleInputChange(text)}
               />
             </View>
             <View style={styles.footer}>
-              <Button value="Confirmar" />
+                <Button text="Confirmar" onPress={handleConfirmationPage} />
             </View>
           </View>
         </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
