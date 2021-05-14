@@ -54,7 +54,7 @@ const UserIdentification = () => {
               />
             </View>
             <View style={styles.footer}>
-              <Button value="Confirmar" />
+              <Button text="Confirmar" />
             </View>
           </View>
         </View>
