@@ -1,10 +1,14 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
+
 const ConfirmationUser = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.emoji}>{'😄'}</Text>
+        <Text style={styles.title}>Prontinho</Text>
       </View>
     </SafeAreaView>
   );
@@ -25,6 +29,14 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 78,
+  },
+  title: {
+    fontSize: 22,
+    fontFamily: fonts.heading,
+    textAlign: 'center',
+    color: colors.heading,
+    lineHeight: 38,
+    marginTop: 15,
   },
 });
 
