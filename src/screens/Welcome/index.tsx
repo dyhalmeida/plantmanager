@@ -12,8 +12,15 @@ import { Feather } from '@expo/vector-icons';
 import wateringImage from '../../assets/watering.png';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
+import { useNavigation } from '@react-navigation/core';
 
 const Welcome = () => {
+  const navigation = useNavigation();
+
+  function handleUserIdentificationPage() {
+    navigation.navigate('UserIdentification');
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
@@ -29,7 +36,10 @@ const Welcome = () => {
           Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
           sempre que precisar.
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleUserIdentificationPage}
+        >
           <Feather style={styles.icon} name="chevron-right" />
         </TouchableOpacity>
       </View>
