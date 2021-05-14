@@ -10,6 +10,8 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+
 import { Button } from '../../components/Button';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
@@ -18,6 +20,7 @@ const UserIdentification = () => {
   const [focused, setFocused] = React.useState(false);
   const [dirty, setDirty] = React.useState(false);
   const [username, setUsername] = React.useState<string>();
+  const navigation = useNavigation();
 
   function handleInputBlur() {
     setFocused(false);
@@ -32,6 +35,9 @@ const UserIdentification = () => {
     setDirty(!!text);
     setUsername(text);
   }
+
+  function handleConfirmationPage() {
+    navigation.navigate('ConfirmationUser');
   }
 
   return (
@@ -60,7 +66,7 @@ const UserIdentification = () => {
               />
             </View>
             <View style={styles.footer}>
-              <Button text="Confirmar" />
+                <Button text="Confirmar" onPress={handleConfirmationPage} />
             </View>
           </View>
         </View>
