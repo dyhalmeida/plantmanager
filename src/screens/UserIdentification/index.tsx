@@ -26,9 +26,10 @@ const UserIdentification = () => {
     setFocused(true);
   }
 
-  function handleInputChange(value: string) {
-    setDirty(!!value);
-    setUsername(value);
+  function handleInputChange(text: string) {
+    setDirty(!!text);
+    setUsername(text);
+  }
   }
 
   return (
@@ -45,12 +46,14 @@ const UserIdentification = () => {
               <TextInput
                 style={[
                   styles.input,
-                  (focused || dirty) && { borderColor: colors.green },
+                    focused || dirty
+                      ? { borderColor: colors.green }
+                      : { borderColor: colors.gray },
                 ]}
                 placeholder="Digite um nome"
                 onBlur={handleInputBlur}
                 onFocus={handleInputFocus}
-                onChange={handleInputChange}
+                  onChangeText={(text) => handleInputChange(text)}
               />
             </View>
             <View style={styles.footer}>
