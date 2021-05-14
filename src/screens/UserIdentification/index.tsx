@@ -6,7 +6,9 @@ import {
   TextInput,
   StyleSheet,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
   Platform,
+  Keyboard,
 } from 'react-native';
 import { Button } from '../../components/Button';
 import colors from '../../styles/colors';
@@ -38,6 +40,7 @@ const UserIdentification = () => {
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
@@ -61,6 +64,7 @@ const UserIdentification = () => {
             </View>
           </View>
         </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
