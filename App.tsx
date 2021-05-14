@@ -5,8 +5,7 @@ import {
   Jost_400Regular,
 } from '@expo-google-fonts/jost';
 import AppLoading from 'expo-app-loading';
-
-import { Welcome } from './src/screens/Welcome';
+import { Routes } from './src/routes';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -18,7 +17,7 @@ const App = () => {
     return <AppLoading />;
   }
 
-  return <Welcome />;
+  return <Routes />;
 };
 
 export default App;
