@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import ProfileImage from '../../assets/profile.jpeg';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
@@ -11,6 +12,7 @@ const Header = () => {
         <Text style={styles.greeting}>Olá,</Text>
         <Text style={styles.username}>Diego</Text>
       </View>
+      <Image style={styles.image} source={ProfileImage} />
     </View>
   );
 };
@@ -34,6 +36,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.heading,
     color: colors.heading,
     lineHeight: 40,
+  },
+  image: {
+    width: 70,
+    height: 70,
+    borderRadius: 40,
   },
 });
 
