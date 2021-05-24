@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Header } from '../../components/Header';
 
 const PlantSelect = () => {
   return (
     <View style={styles.container}>
+      <Header />
     </View>
   );
 };
