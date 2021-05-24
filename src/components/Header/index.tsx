@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 const Header = () => {
   return (
     <View style={styles.container}>
@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
+    marginTop: getStatusBarHeight(),
   },
 });
 
