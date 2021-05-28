@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { EnvironmentButton } from '../../components/EnvironmentButton';
 import { Header } from '../../components/Header';
+import { PlantCardPrimary } from '../../components/PlantCardPrimary';
 import { api } from '../../services/api';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
@@ -15,8 +16,23 @@ interface EnvironmentProps {
   key: string;
   title: string;
 }
+
+interface PlantsProps {
+  id: number;
+  name: string;
+  about: string;
+  water_tips: string;
+  photo: string;
+  environments: [string, string];
+  frequency: {
+    times: number;
+    repeat_every: string;
+  };
+}
+
 const PlantSelect = () => {
   const [environments, setEnvironments] = React.useState<Array<EnvironmentProps>>([]);
+  const [plants, setPlants] = React.useState<Array<PlantsProps>>([]);
   const [environmentSelected, setEnvironmentSelected] = React.useState('all');
 
   React.useEffect(() => {
@@ -30,6 +46,14 @@ const PlantSelect = () => {
     })();
 
   }, []);
+
+  React.useEffect(() => {    
+    (async () => {
+      const { data } = await api.get('plants_types?_sort=name&_order=asc');
+      setPlants(data)
+    })();
+  }, []);
+
   function handleEnvironmentSelected(environment: string) {
     setEnvironmentSelected(environment);
   }
@@ -37,10 +61,10 @@ const PlantSelect = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <Header />
+        <Header />
         <Text style={styles.title}>Em qual ambiente</Text>
         <Text style={styles.subtitle}>você quer colocar a sua planta?</Text>
-    </View>
+      </View>
       <View>
         <FlatList
           data={environments}
@@ -58,7 +82,16 @@ const PlantSelect = () => {
         />
       </View>
       <View style={styles.plants}>
+        <FlatList
+          data={plants}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (<PlantCardPrimary data={item} />)}
+          horizontal={false}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
+    </View>
   );
 };
 
