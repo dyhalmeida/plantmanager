@@ -33,6 +33,7 @@ interface PlantsProps {
 const PlantSelect = () => {
   const [environments, setEnvironments] = React.useState<Array<EnvironmentProps>>([]);
   const [plants, setPlants] = React.useState<Array<PlantsProps>>([]);
+  const [filteredPlants, setFilteredPlants] = React.useState<Array<PlantsProps>>([]);
   const [environmentSelected, setEnvironmentSelected] = React.useState('all');
 
   React.useEffect(() => {
@@ -56,6 +57,13 @@ const PlantSelect = () => {
 
   function handleEnvironmentSelected(environment: string) {
     setEnvironmentSelected(environment);
+    if (environment === 'all') {
+      return setFilteredPlants(plants);
+    }
+
+    const filtered = plants.filter(plant => plant.environments.includes(environment));
+
+    setFilteredPlants(filtered)
   }
 
   return (
@@ -83,7 +91,7 @@ const PlantSelect = () => {
       </View>
       <View style={styles.plants}>
         <FlatList
-          data={plants}
+          data={filteredPlants}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (<PlantCardPrimary data={item} />)}
           horizontal={false}
