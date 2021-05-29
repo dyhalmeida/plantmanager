@@ -8,6 +8,7 @@ import {
 import { EnvironmentButton } from '../../components/EnvironmentButton';
 import { Header } from '../../components/Header';
 import { PlantCardPrimary } from '../../components/PlantCardPrimary';
+import { Load } from '../../components/Load';
 import { api } from '../../services/api';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
@@ -35,6 +36,7 @@ const PlantSelect = () => {
   const [plants, setPlants] = React.useState<Array<PlantsProps>>([]);
   const [filteredPlants, setFilteredPlants] = React.useState<Array<PlantsProps>>([]);
   const [environmentSelected, setEnvironmentSelected] = React.useState('all');
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
 
@@ -45,13 +47,14 @@ const PlantSelect = () => {
         ...data
       ]);
     })();
-
+    
   }, []);
-
+  
   React.useEffect(() => {    
     (async () => {
       const { data } = await api.get('plants_types?_sort=name&_order=asc');
       setPlants(data)
+      setLoading(false);
     })();
   }, []);
 
@@ -65,6 +68,8 @@ const PlantSelect = () => {
 
     setFilteredPlants(filtered)
   }
+
+  if (loading) return <Load />;
 
   return (
     <View style={styles.container}>
