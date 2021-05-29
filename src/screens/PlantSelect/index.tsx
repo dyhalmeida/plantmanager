@@ -4,6 +4,7 @@ import {
   View,
   Text, 
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import { EnvironmentButton } from '../../components/EnvironmentButton';
 import { Header } from '../../components/Header';
@@ -37,6 +38,8 @@ const PlantSelect = () => {
   const [filteredPlants, setFilteredPlants] = React.useState<Array<PlantsProps>>([]);
   const [environmentSelected, setEnvironmentSelected] = React.useState('all');
   const [loading, setLoading] = React.useState(true);
+  const [page, setPage]= React.useState(1);
+  const [loadingMore, setLoadingMore] = React.useState(false);
 
   React.useEffect(() => {
 
@@ -51,12 +54,31 @@ const PlantSelect = () => {
   }, []);
   
   React.useEffect(() => {    
-    (async () => {
-      const { data } = await api.get('plants_types?_sort=name&_order=asc');
-      setPlants(data)
-      setLoading(false);
-    })();
+    fetchPlants();
   }, []);
+
+  async function fetchPlants() {
+    const { data } = await api.get(`plants_types?_sort=name&_order=asc&_page=${page}&_limit=8`);
+      
+    if (!data) return setLoading(false);
+
+    if (page > 1) {
+      setPlants(oldPlants => [...oldPlants, ...data]);
+      setFilteredPlants(oldPlants => [...oldPlants, ...data]);
+    } else {
+      setPlants(data)
+      setFilteredPlants(data);
+    }
+    setLoading(false);
+    setLoadingMore(false);
+  }
+
+  function handleFetchMore(distanceForEnd: number) {
+    if (distanceForEnd < 1) return;
+    setLoadingMore(true);
+    setPage(oldPage => oldPage + 1);
+    fetchPlants();
+  }
 
   function handleEnvironmentSelected(environment: string) {
     setEnvironmentSelected(environment);
@@ -102,6 +124,11 @@ const PlantSelect = () => {
           horizontal={false}
           numColumns={2}
           showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={0.1}
+          onEndReached={({ distanceFromEnd }) => handleFetchMore(distanceFromEnd)}
+          ListFooterComponent={
+            loadingMore && <ActivityIndicator color={colors.green} />
+          }
         />
       </View>
     </View>
