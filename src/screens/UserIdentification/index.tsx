@@ -37,7 +37,17 @@ const UserIdentification = () => {
     setUsername(text);
   }
 
-  function handleConfirmationPage() {
+    if (!username) {
+      return Alert.alert(
+        'Me diz como chamar você? 😭',
+        'É importante nos informar o seu nome para uma melhor experiência na aplicação.',
+        [
+          {
+            text: "Certo"
+          },
+        ]
+      );
+    }
 
     if (!username) return Alert.alert('Me diz como chamar você? 😭');
 
