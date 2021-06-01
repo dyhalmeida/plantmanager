@@ -12,6 +12,7 @@ import {
   Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../../components/Button';
 import colors from '../../styles/colors';
@@ -37,6 +38,8 @@ const UserIdentification = () => {
     setUsername(text);
   }
 
+  async function handleConfirmationPage() {
+
     if (!username) {
       return Alert.alert(
         'Me diz como chamar você? 😭',
@@ -49,7 +52,7 @@ const UserIdentification = () => {
       );
     }
 
-    if (!username) return Alert.alert('Me diz como chamar você? 😭');
+    await AsyncStorage.setItem('@plantmanager:username', username);
 
     navigation.navigate('ConfirmationUser');
   }
