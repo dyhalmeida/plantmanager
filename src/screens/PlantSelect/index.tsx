@@ -58,7 +58,7 @@ const PlantSelect = () => {
   }, []);
 
   async function fetchPlants() {
-    const { data } = await api.get(`plants_types?_sort=name&_order=asc&_page=${page}&_limit=8`);
+    const { data } = await api.get(`plants?_sort=name&_order=asc&_page=${page}&_limit=8`);
       
     if (!data) return setLoading(false);
 
