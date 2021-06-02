@@ -5,6 +5,7 @@ import { Welcome } from '../../screens/Welcome';
 import { UserIdentification } from '../../screens/UserIdentification';
 import { ConfirmationUser } from '../../screens/ConfirmationUser';
 import { PlantSelect } from '../../screens/PlantSelect';
+import { PlantSave } from '../../screens/PlantSave';
 
 const stackRoutes = createStackNavigator();
 
@@ -22,6 +23,8 @@ const AppRoutes = () => (
     />
     <stackRoutes.Screen name="ConfirmationUser" component={ConfirmationUser} />
     <stackRoutes.Screen name="PlantSelect" component={PlantSelect} />
+    <stackRoutes.Screen name="PlantSave" component={PlantSave} />
+
   </stackRoutes.Navigator>
 );
 
