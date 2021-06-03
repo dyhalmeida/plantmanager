@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  ScrollView,
   Text,
   Image,
   TouchableOpacity,
@@ -82,7 +83,8 @@ const PlantSave = () => {
   }
 
   return (
-   <View style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.container}>
+     <View style={styles.container}>
      <View style={styles.plantInfo}>
         <SvgFromUri uri={plant.photo} height={150} width={150} />
         <Text style={styles.plantName}>
@@ -117,9 +119,10 @@ const PlantSave = () => {
           </TouchableOpacity>
         )}
 
-        <Button text="Cadastrar planta" onPress={handleSave} />
+        <Button text="Agendar" onPress={handleSave} />
       </View>
    </View>
+   </ScrollView>
   );
 }
 
