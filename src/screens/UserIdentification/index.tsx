@@ -52,9 +52,20 @@ const UserIdentification = () => {
       );
     }
 
+   try {
     await AsyncStorage.setItem('@plantmanager:username', username);
-
-    navigation.navigate('ConfirmationUser');
+   } catch (error) {
+    Alert.alert(
+      'Algo deu errado... 😭',
+      'Não foi possível salvar o seu nome.',
+      [
+        {
+          text: "Certo"
+        },
+      ]
+    );
+   }
+   navigation.navigate('ConfirmationUser');
   }
 
   return (
