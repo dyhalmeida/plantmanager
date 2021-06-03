@@ -13,6 +13,9 @@ import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { SvgFromUri } from 'react-native-svg';
 import { useRoute } from '@react-navigation/core'
 import { format, isBefore } from 'date-fns';
+import { 
+  PlantProps, 
+} from '../../libs/storage';
 
 import { Button } from '../../components/Button';
 
@@ -21,18 +24,7 @@ import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
 interface ParamsProps {
-  plant: {
-    id: number;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: [string, string];
-    frequency: {
-      times: number;
-      repeat_every: string;
-    };
-  }
+  plant: PlantProps,
 }
 
 const PlantSave = () => {
