@@ -21,19 +21,6 @@ interface EnvironmentProps {
   title: string;
 }
 
-interface PlantsProps {
-  id: number;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string, string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
-}
-
 const PlantSelect = () => {
   const [environments, setEnvironments] = React.useState<Array<EnvironmentProps>>([]);
   const [plants, setPlants] = React.useState<Array<PlantProps>>([]);
