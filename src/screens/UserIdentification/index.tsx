@@ -65,7 +65,13 @@ const UserIdentification = () => {
       ]
     );
    }
-   navigation.navigate('ConfirmationUser');
+   navigation.navigate('ConfirmationUser', {
+     title: 'Protinho',
+     subtitle: 'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+     textButton: 'Vamos lá...',
+     icon: 'smile',
+     nextScreen: 'PlantSelect'
+   });
   }
 
   return (
