@@ -15,6 +15,7 @@ import { useRoute } from '@react-navigation/core'
 import { format, isBefore } from 'date-fns';
 import { 
   PlantProps, 
+  savePlant 
 } from '../../libs/storage';
 
 import { Button } from '../../components/Button';
@@ -61,6 +62,25 @@ const PlantSave = () => {
     setShowDateTimePicker(oldDateTime => !oldDateTime);
   }
 
+  async function handleSave() {
+    try {
+      await savePlant({
+        ...plant,
+        dateTimeNotification: dateTime,
+      });
+    } catch (error) {
+      Alert.alert(
+        'Algo deu errado... 😭',
+        'Não foi possível salvar seu agendamento.',
+        [
+          {
+            text: "Certo"
+          },
+        ]
+      );
+    }
+  }
+
   return (
    <View style={styles.container}>
      <View style={styles.plantInfo}>
@@ -97,7 +117,7 @@ const PlantSave = () => {
           </TouchableOpacity>
         )}
 
-        <Button text="Cadastrar planta" onPress={() => {}} />
+        <Button text="Cadastrar planta" onPress={handleSave} />
       </View>
    </View>
   );
