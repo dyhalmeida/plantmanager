@@ -12,7 +12,7 @@ import {
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { SvgFromUri } from 'react-native-svg';
-import { useRoute } from '@react-navigation/core'
+import { useNavigation, useRoute } from '@react-navigation/core'
 import { format, isBefore } from 'date-fns';
 import { 
   PlantProps, 
@@ -35,6 +35,8 @@ const PlantSave = () => {
   const [showDateTimePicker, setShowDateTimePicker] = React.useState(Platform.OS === 'ios');
 
   const route = useRoute();
+  const navigation = useNavigation();
+
   const { plant } = route.params as ParamsProps;
 
   function handleChangeTime(event: Event, dateTime: Date | undefined) {
@@ -69,6 +71,15 @@ const PlantSave = () => {
         ...plant,
         dateTimeNotification: dateTime,
       });
+
+      navigation.navigate('ConfirmationUser', {
+        title: 'Tudo certo',
+        subtitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.',
+        textButton: 'Certo',
+        icon: 'hug',
+        nextScreen: 'MyPlants'
+      })
+      
     } catch (error) {
       Alert.alert(
         'Algo deu errado... 😭',
