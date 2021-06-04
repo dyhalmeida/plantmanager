@@ -13,33 +13,23 @@ import { Load } from '../../components/Load';
 import { api } from '../../services/api';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
+import { useNavigation } from '@react-navigation/core';
+import { PlantProps } from '../../libs/storage';
 
 interface EnvironmentProps {
   key: string;
   title: string;
 }
 
-interface PlantsProps {
-  id: number;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string, string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
-}
-
 const PlantSelect = () => {
   const [environments, setEnvironments] = React.useState<Array<EnvironmentProps>>([]);
-  const [plants, setPlants] = React.useState<Array<PlantsProps>>([]);
-  const [filteredPlants, setFilteredPlants] = React.useState<Array<PlantsProps>>([]);
+  const [plants, setPlants] = React.useState<Array<PlantProps>>([]);
+  const [filteredPlants, setFilteredPlants] = React.useState<Array<PlantProps>>([]);
   const [environmentSelected, setEnvironmentSelected] = React.useState('all');
   const [loading, setLoading] = React.useState(true);
   const [page, setPage]= React.useState(1);
   const [loadingMore, setLoadingMore] = React.useState(false);
+  const navigation = useNavigation();
 
   React.useEffect(() => {
 
@@ -91,6 +81,10 @@ const PlantSelect = () => {
     setFilteredPlants(filtered)
   }
 
+  function handlePlantSelect(plant: PlantProps) {
+    navigation.navigate('PlantSave', { plant });
+  }
+
   if (loading) return <Load />;
 
   return (
@@ -120,7 +114,7 @@ const PlantSelect = () => {
         <FlatList
           data={filteredPlants}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (<PlantCardPrimary data={item} />)}
+          renderItem={({ item }) => (<PlantCardPrimary data={item} onPress={() => handlePlantSelect(item)} />)}
           horizontal={false}
           numColumns={2}
           showsVerticalScrollIndicator={false}
@@ -138,6 +132,7 @@ const PlantSelect = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 50,
   },
   header: {
     paddingHorizontal: 30,
