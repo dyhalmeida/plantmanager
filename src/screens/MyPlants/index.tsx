@@ -9,6 +9,7 @@ import { ptBR } from 'date-fns/locale';
 import { PlantProps } from '../../libs/storage';
 import fonts from '../../styles/fonts';
 import { PlantCardSecondary } from '../../components/PlantCardSecondary';
+import { Load } from '../../components/Load';
 
 const MyPlants = () => {
 
@@ -22,7 +23,7 @@ const MyPlants = () => {
       const [plant] = plantsStoraged;
 
       const nextTime = formatDistance(
-        new Date(plant.dateTimeNotification).getTime(),
+        new Date(plant.dateTimeNotification || '').getTime(),
         new Date().getTime(),
         { locale: ptBR }
       );
@@ -31,6 +32,8 @@ const MyPlants = () => {
       setNextWaterd(`Não esqueça de regar a ${plant.name} à ${nextTime}`);
     })();
   }, []);
+
+  if (loading) return <Load />;
 
   return (
     <View style={styles.container}>
